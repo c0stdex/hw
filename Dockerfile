@@ -1,9 +1,15 @@
+
 FROM python:3.12
 
-RUN pip install personal_assistant
+
+WORKDIR /app
 
 
-CMD ["personal-assistant"]
-    
+COPY . /app
 
 
+RUN pip install pipenv
+RUN pipenv install --deploy --ignore-pipfile
+
+
+CMD ["pipenv", "run", "python", "hw.py"]
